@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View ,Image, ImageBackground, TextInput ,Button} from 'react-native';
-import SignIn from './SignIn'
-import Cities from './Cities'
+
 
 function Landing({navigation}) {
     
@@ -15,7 +14,12 @@ function Landing({navigation}) {
                      <View style={styles.botonCaja} > 
                         <Text style={styles.tex1} onPress={()=> navigation.navigate('SignIn')}>SIGN IN</Text>
                      </View>
-                   
+                     <View style={styles.botonCaja} > 
+                        <Text style={styles.tex1} onPress={()=> navigation.navigate('SignUp')}>REGISTER</Text>
+                     </View>
+                     <View style={styles.botonCaja} > 
+                        <Text style={styles.tex1} onPress={()=> navigation.navigate('Itineraries')}>ITINERARIES</Text>
+                     </View>
                 </ImageBackground> 
             </View>  
        </> 
@@ -27,7 +31,7 @@ const styles  = {
   
     botonCaja:{
       marginTop:8,
-      backgroundColor:'rgba(211, 214, 39, 0.781)',
+      backgroundColor:'rgba(124, 414, 49, 0.781)',
       width:'50%',
       marginLeft:'25%',
       borderRadius:8,

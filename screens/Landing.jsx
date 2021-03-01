@@ -3,10 +3,7 @@ import { StyleSheet, Text, View ,Image, ImageBackground, TextInput ,Button} from
 import AsyncStorage  from '@react-native-async-storage/async-storage'
 
 function Landing(props) {
-
-  const userName = (props.route)
  
-    
     return (
         <>
             <View style={styles.contenedorGral}>
@@ -30,24 +27,30 @@ const styles  = {
  
   
     botonCaja:{
-      marginTop:8,
-      backgroundColor:'rgba(124, 414, 49, 0.781)',
+      marginTop:0,
+      backgroundColor:'rgba(504, 414, 49, 0.881)',
       width:'50%',
-      marginLeft:'25%',
-      borderRadius:8,
-      padding:8.5,
-      border:'12 solid black',
+      marginLeft:'24%',
+      borderRadius:10,
+      padding:5.5,
+      borderWidth:3,
       alignItems:'center', 
+      justifyContent:'flex-end', 
+      marginBottom:50
+
+
     },
    
     contenedorGral:{
       flex: 1,
-      justifyContent:'center', 
+      justifyContent:'flex-end', 
     },
   
     text1:{
       textAlign:'center',
       justifyContent:'center', 
+
+      
     }
   
   }

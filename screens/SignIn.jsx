@@ -11,7 +11,7 @@ import {connect} from 'react-redux'
 
 
 const SignIn =(props) => {
-    console.log(props)
+    console.log()
     const [usuarioRegistrado , setUsuarioRegistrado] = useState({})
     const [errores , setErrores] = useState([])
 
@@ -35,8 +35,7 @@ const SignIn =(props) => {
         errores.map(error => console.log(error))
             
     } else {
-        console.log('me loguee')
-      Alert.alert('Welcome To MyTinerary!')  
+      Alert.alert(`¡Welcome To MYtineray! ${props.loggedUser.username}`)  
       props.navigation.navigate('Landing')    
     }      
   }

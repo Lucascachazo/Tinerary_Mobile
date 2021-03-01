@@ -16,7 +16,7 @@ const SignUp =(props) => {
 
 
     const validarUsuario  = async e =>{
-            Alert.alert("Usuario Cargado")
+            Alert.alert("User Logged")
         
             if(nuevoUsuario.name === '' || nuevoUsuario.lastname === '' ) {
 
@@ -28,7 +28,7 @@ const SignUp =(props) => {
             if(respuesta && !respuesta.success ){
             
             }else {
-                Alert.alert('Form Send!')
+                Alert.alert('¡Form Send!')
             }
         }
         return (
@@ -47,7 +47,7 @@ const SignUp =(props) => {
                         <TextInput placeholder = 'EMAIL' style={styles.input} 
                         onChangeText={(value)=>leerInput ('email',value)}/>
                         <TextInput placeholder = 'PASSWORD' style={styles.input}
-                        onChangeText={(value)=>leerInput ('password',value)}/>
+                        onChangeText={(value)=>leerInput ('password',value)} secureTextEntry />
 
                     </View>
                     <TouchableHighlight style={styles.button} >

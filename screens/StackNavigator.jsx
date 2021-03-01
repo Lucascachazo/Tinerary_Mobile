@@ -11,14 +11,14 @@ import {Button ,Alert, ToastAndroid} from 'react-native'
 
 const Stack = createStackNavigator()
 
-function StackNavigator() {
-    const [user, setUser] = useState()
+function StackNavigator(props) {
+   
 
  
     return (
           <Stack.Navigator>  
           <Stack.Screen name = "Landing" component = {Landing} options={{
-            title: "Welcome to Home", headerRight: () => (<Button title={user ? user.userName : "Menú"} />)
+            title: "Welcome to Home"
           }} />
           <Stack.Screen name = "SignIn" component = {SignIn}/> 
           <Stack.Screen name="Cities" component={Cities}/> 

@@ -20,7 +20,7 @@ const SignUp =(props) => {
         
             if(nuevoUsuario.name === '' || nuevoUsuario.lastname === '' ) {
 
-                alert ("los campos son obligatorios")
+                Alert.alert ("All fields are required")
                 return false
             }
             const respuesta = await props.registerUser(nuevoUsuario)
@@ -29,6 +29,7 @@ const SignUp =(props) => {
             
             }else {
                 Alert.alert('¡Form Send!')
+                props.navigation.navigate('SignIn')  
             }
         }
         return (

@@ -30,21 +30,23 @@ import {TouchableHighlight, StyleSheet, Text, View ,Image, ImageBackground, Text
                 <Text style={styles.titleF}>{titulo}</Text>
              </ImageBackground>
 
-                {itineraries.map(itinerary=>{ 
+            {itineraries.length === 0 
+                ? <View style={styles.contenedorInt}><Text style = {styles.textNoitineraries}>NO INTINERARIES YET</Text ></View>
+                : itineraries.map(itinerary=>{ 
                             
                 return(
-                    <View style={styles.contenedor}>
-                        <Text style={styles.titleP}>{itinerary.title}</Text>
-                        <View style={styles.box4}>
+                    <View style = {styles.contenedor}>
+                        <Text style = {styles.titleP}>{itinerary.title}</Text>
+                        <View style = {styles.box4}>
                             <View>
-                                <Image source={{uri:itinerary.userPic}} style={{width:120 , height:120, borderRadius:100}} resizeMode='contain'></Image>
-                                <Text style={styles.textCity1}>{itinerary.userName}</Text>
+                                <Image source={{uri:itinerary.userPic}} style = {{width:120 , height:120, borderRadius:100}} resizeMode='contain'></Image>
+                                <Text style = {styles.textCity1}>{itinerary.userName}</Text>
                             </View>
-                            <View style={styles.box5}>
-                                <Text style={styles.textCity}><Entypo name="credit" size={24} color="green"/>  {itinerary.price}</Text>
-                                <Text style={styles.textCity}><Ionicons name="md-heart-sharp" size={24} color="red"/>  {itinerary.likes}</Text> 
-                                <Text style={styles.textCity}><MaterialCommunityIcons name="clock-time-three" size={24} color="orange"/>  {itinerary.hours} hs</Text> 
-                                <Text style={styles.textCity}>{itinerary.hashtag}</Text>
+                            <View style = {styles.box5}>
+                                <Text style = {styles.textCity}><Entypo name="credit" size={24} color="green"/>  {itinerary.price}</Text>
+                                <Text style = {styles.textCity}><Ionicons name="md-heart-sharp" size={24} color="red"/>  {itinerary.likes}</Text> 
+                                <Text style = {styles.textCity}><MaterialCommunityIcons name="clock-time-three" size={24} color="orange"/>  {itinerary.hours} hs</Text> 
+                                <Text style = {styles.textCity}>{itinerary.hashtag}</Text>
                             </View>
                         </View>
                     </View>
@@ -58,6 +60,20 @@ import {TouchableHighlight, StyleSheet, Text, View ,Image, ImageBackground, Text
 }
 const styles  = StyleSheet.create({
 
+    contenedorInt:{
+        
+            backgroundColor:'rgba(119, 115, 115, 0.344)',
+            marginBottom:10,
+            marginTop:45,
+            borderRadius:15,
+            // marginTop:15,
+            borderWidth:1,
+            borderRadius:20,
+            borderColor:'yellow',
+            height:150
+            
+
+    },
     contenedor:{
         backgroundColor:'rgba(119, 115, 115, 0.344)',
         flex:1,
@@ -93,10 +109,17 @@ const styles  = StyleSheet.create({
          marginLeft:80,
          fontSize:20,
          margin:5,
-         
-
      },
-    
+    textNoitineraries:{
+        width:400,
+        fontWeight:'500',
+        color:'white',
+        fontSize:23,
+        textAlign:'center',
+        marginTop:60
+        
+
+    },
      textCity1:{
          marginRight:1,
          alignItems:'center',

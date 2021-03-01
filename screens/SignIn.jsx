@@ -1,33 +1,66 @@
 import React, {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
-import {TouchableHighlight, StyleSheet, Text, View ,Image, ImageBackground, TextInput ,Button ,Alert, ToastAndroid} from 'react-native';
+import {TouchableHighlight, 
+  StyleSheet, 
+  Text, 
+  View ,Keyboard,
+  TouchableWithoutFeedback, ImageBackground, TextInput ,Button ,Alert, ToastAndroid} from 'react-native';
+import AsyncStorage  from '@react-native-async-storage/async-storage'
+import authAction from '../redux/actions/authAction'
+import {connect} from 'react-redux'
 
 
-const SignIn =() => {
+const SignIn =(props) => {
+    console.log(props)
+    const [usuarioRegistrado , setUsuarioRegistrado] = useState({})
+    const [errores , setErrores] = useState([])
 
-    const enviado = () =>{Alert.alert ('Esta seguro que desea ingresar?',[
-        {text:'SI', onPress:()=> ToastAndroid.show('Ingresando',ToastAndroid.LONG)},
-        {text:'NO', onPress:()=> ToastAndroid.show('Hasta Luego',ToastAndroid.LONG)}
-    ])
-} 
+    const leerInput =((name , value) => {
+       setUsuarioRegistrado({
+       ...usuarioRegistrado ,[name]:value
+    })
+ })
 
-    const [value , setValue] = useState('')
+  const validarUsuario  = async e =>{
+    if(usuarioRegistrado.username === '' || usuarioRegistrado.password === '' ) {
+        Alert.alert ("todos los campos son obligatorios y deben ser completados")
+        return false
+    }
+    setErrores([])
+
+    const respuesta = await props.loginUser(usuarioRegistrado)
+    if(respuesta && !respuesta.success ){
+        Alert.alert("All fields are required")
+        setErrores([respuesta.mensaje])
+        errores.map(error => console.log(error))
+            
+    } else {
+        console.log('me loguee')
+      Alert.alert('Welcome To MyTinerary!')  
+      props.navigation.navigate('Landing')    
+    }      
+  }
     return (
     <>
+    <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
         <ImageBackground source={require('./assets/4.png')} style={styles.box2}>
             <View style={styles.container}>
-                <View>
-                    {/* <Text style={styles.input} >{value}</Text> */}
-                    
-                    <Text style={styles.title}>SIGN IN</Text>
-                    <TextInput placeholder='USER'style={styles.input}  onChangeText={(value) => setValue(value)}/>
-                    <TextInput secureTextEntry placeholder='PASSWORD'style={styles.input} onChangeText={(value) => setValue(value)}/>
-                </View>
-                <TouchableHighlight style={styles.button}>
-                    <Text style={styles.textButton} onPress={enviado}>SEND</Text>
-                </TouchableHighlight>
+                  <View>
+                      <Text style={styles.title}>SIGN IN</Text>
+                      <TextInput placeholder = 'USER' style={styles.input} 
+                        onChangeText={(value)=>leerInput ('username',value)}/>
+                      <TextInput secureTextEntry placeholder = 'PASSWORD' style={styles.input}
+                        onChangeText={(value)=>leerInput ('password',value)}/>
+                  </View>
+                  <TouchableHighlight style={styles.button}
+                        onPress={validarUsuario}>
+                          
+                      <Text style={styles.textButton}>SEND</Text>  
+                  </TouchableHighlight>
             </View>
         </ImageBackground>
+      </TouchableWithoutFeedback>
+        
      </>
       
     )
@@ -43,7 +76,7 @@ const styles = StyleSheet.create({
         paddingRight:15,
     },
     input:{
-        height:50,
+        height:60,
         borderColor:'black',
         borderWidth:2,
         marginBottom:20,
@@ -76,7 +109,31 @@ const styles = StyleSheet.create({
         
     }
   })
-export default SignIn
+  const mapStateToProps = (state)=>{
+
+    return{
+      loggedUser: state.authReducer.loggedUser   
+    }
+}
+
+const mapDispatchToProps = {
+    loginUser: authAction.loginUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+
+
+
+// try{
+//   await AsyncStorage.setItem('usuarioRegistrado', JSON.stringify(usuarioRegistrado))
+//     var usuarioGuardado = await AsyncStorage.getItem('usuarioRegistrado')
+//     setLogueado(usuarioGuardado)
+//     
+// }
+// catch (error){
+//   console.log(error)
+// }
+// Alert.alert ('¡WELCOME!')
 
 
   

@@ -1,24 +1,33 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import { StyleSheet, Text, View ,Image, ImageBackground, TextInput ,Button} from 'react-native';
+import AsyncStorage  from '@react-native-async-storage/async-storage'
 
+function Landing(props) {
 
-function Landing({navigation}) {
+  const userName = (props.route)
+  // console.log(userName)
+
+    // useEffect(()=>{
+    //   persistencia()
+    // })
+    // const persistencia = async () =>{
+    //   var usuarioGuardado = await AsyncStorage.getItem('usuarioRegistrado')
+    //   console.log(JSON.parse(usuarioGuardado))
+
+    // }
     
     return (
         <>
             <View style={styles.contenedorGral}>
                 <ImageBackground style={styles.contenedorGral} source={require('./assets/2.png')}resizeMode='cover'>
                     <View style={styles.botonCaja} > 
-                        <Text style={styles.tex1} onPress={()=> navigation.navigate('Cities')}>GO TO CITIES</Text>
+                        <Text style={styles.tex1} onPress={()=> props.navigation.navigate('Cities')}>GO TO CITIES</Text>
                      </View>
                      <View style={styles.botonCaja} > 
-                        <Text style={styles.tex1} onPress={()=> navigation.navigate('SignIn')}>SIGN IN</Text>
+                        <Text style={styles.tex1} onPress={()=> props.navigation.navigate('SignIn')}>SIGN IN</Text>
                      </View>
                      <View style={styles.botonCaja} > 
-                        <Text style={styles.tex1} onPress={()=> navigation.navigate('SignUp')}>REGISTER</Text>
-                     </View>
-                     <View style={styles.botonCaja} > 
-                        <Text style={styles.tex1} onPress={()=> navigation.navigate('Itineraries')}>ITINERARIES</Text>
+                        <Text style={styles.tex1} onPress={()=> props.navigation.navigate('SignUp')}>REGISTER</Text>
                      </View>
                 </ImageBackground> 
             </View>  

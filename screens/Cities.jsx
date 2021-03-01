@@ -5,14 +5,14 @@ import {TouchableHighlight, StyleSheet, Text, View ,Image, ImageBackground, Text
 
 
 const Cities = (props) => {
-const [cities , setCities] = useState([])
-useEffect(() => {
+    const [cities , setCities] = useState([])
+    
+    useEffect(() => {
         fetch('https://mytinerarymobile.herokuapp.com/cities') 
         .then(respuesta => respuesta.json())
         .then(data => setCities(data.respuesta))    
     }, [])
-
-   
+ 
     return(
         <ScrollView>
             <View style={styles.box3}>
@@ -42,13 +42,10 @@ const styles  = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',    
      },
-
      box1:{
         alignItems:'center',
-        justifyContent:'center',
-        
+        justifyContent:'center',  
      },
-
      textCity:{
          backgroundColor:'rgba(0, 0, 0, 0.466)',
          width:400,

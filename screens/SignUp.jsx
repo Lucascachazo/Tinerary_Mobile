@@ -1,36 +1,68 @@
-import React from 'react'
-import { StatusBar } from 'expo-status-bar';
-import {TouchableHighlight, StyleSheet, Text, View ,Image, ImageBackground, TextInput ,Button} from 'react-native';
+import React, { useState } from 'react'
+import {connect} from 'react-redux'
+import authAction from '../redux/actions/authAction'
+import {TouchableHighlight,Keyboard, StyleSheet, Text, View ,Image, ImageBackground, TextInput ,Button, Alert, TouchableWithoutFeedback} from 'react-native';
+
+const SignUp =(props) => {
+    const [nuevoUsuario ,setNuevoUsuario]=useState({})
+    const [usuarioRegistrado , setUsuarioRegistrado] = useState('')
+
+    const leerInput =((name , value) => {  
+        setNuevoUsuario({
+            ...nuevoUsuario ,[name]:value
+        }) 
+    })
+    console.log(nuevoUsuario)
 
 
-const SignUp =() => {
-    return (
-        <ImageBackground source={require('./assets/3.png')} style={styles.box2} >
+    const validarUsuario  = async e =>{
+            Alert.alert("Usuario Cargado")
+        
+            if(nuevoUsuario.name === '' || nuevoUsuario.lastname === '' ) {
 
-        <View style={styles.container}>
-            <View>
-                <Text style={styles.title}>REGISTER</Text>
-                <TextInput placeholder='USER'style={styles.input}/>
-                <TextInput placeholder='PASSWORD'style={styles.input}/>
-                <TextInput placeholder='USER'style={styles.input}/>
-                <TextInput placeholder='PASSWORD'style={styles.input}/>
+                alert ("los campos son obligatorios")
+                return false
+            }
+            const respuesta = await props.registerUser(nuevoUsuario)
 
-            </View>
-            <TouchableHighlight
-              style={styles.button}      >
-                <Text style={styles.textButton}>SEND</Text>
-            </TouchableHighlight>
-        </View>
-     </ImageBackground>
-    )
-}
+            if(respuesta && !respuesta.success ){
+            
+            }else {
+                Alert.alert('Form Send!')
+            }
+        }
+        return (
+        <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
+            <ImageBackground source={require('./assets/3.png')} style={styles.box2} >
+                <View style={styles.container}>
+                    <View>
+                        <Text style={styles.title}>REGISTER</Text>
+                        <TextInput placeholder = 'NAME' style={styles.input} 
+                        onChangeText={(value)=>leerInput ('name',value)}/>
+                        <TextInput placeholder = 'LAST NAME' style={styles.input}
+                          onChangeText={(value)=>leerInput ('lastName',value)}/>
+
+                        <TextInput placeholder = 'USER NAME' style={styles.input} 
+                        onChangeText={(value)=>leerInput ('username',value)}/>
+                        <TextInput placeholder = 'EMAIL' style={styles.input} 
+                        onChangeText={(value)=>leerInput ('email',value)}/>
+                        <TextInput placeholder = 'PASSWORD' style={styles.input}
+                        onChangeText={(value)=>leerInput ('password',value)}/>
+
+                    </View>
+                    <TouchableHighlight style={styles.button} >
+                        <Text style={styles.textButton} onPress={validarUsuario}>SEND</Text>
+                    </TouchableHighlight>
+                </View>
+        </ImageBackground>
+        </TouchableWithoutFeedback>
+     )
+    }
 
 const styles = StyleSheet.create({
     box2: {
-        flex: 1,
-        
+        flex: 1,   
    },
-
     container:{
         marginTop:'30%',
         paddingLeft:15,
@@ -59,17 +91,31 @@ const styles = StyleSheet.create({
         borderColor:'green',
         borderWidth:2,
         width:'50%',
-        marginLeft:95
-        
-        
+        marginLeft:95   
     },
     textButton:{
         textAlign:'center',
         color :'black',
-        fontWeight:'700',
-        
+        fontWeight:'700',      
     }
   })
 
 
-export default SignUp
+  const mapStateToProps = state => {
+    return {
+        loggedUser: state.authReducer.registerUser
+    }
+    
+}
+
+
+const mapDispatchToProps = {
+    registerUser : authAction.registerUser
+}
+
+export default connect (mapStateToProps,mapDispatchToProps)(SignUp)
+
+
+
+
+ 

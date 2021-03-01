@@ -62,15 +62,14 @@ const styles  = StyleSheet.create({
 
     contenedorInt:{
         
-            backgroundColor:'rgba(119, 115, 115, 0.344)',
-            marginBottom:10,
-            marginTop:45,
-            borderRadius:15,
-            // marginTop:15,
-            borderWidth:1,
-            borderRadius:20,
-            borderColor:'yellow',
-            height:150
+        backgroundColor:'rgba(119, 115, 115, 0.344)',
+        marginBottom:10,
+        marginTop:45,
+        borderRadius:15,
+        borderWidth:1,
+        borderRadius:20,
+        borderColor:'yellow',
+        height:150
             
 
     },
@@ -101,7 +100,6 @@ const styles  = StyleSheet.create({
         justifyContent:'center',   
      },
      textCity:{
-        //  backgroundColor:'rgba(0, 0, 0, 0.466)',
          width:400,
          fontWeight:'500',
          color:'white',

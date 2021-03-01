@@ -11,7 +11,6 @@ import {connect} from 'react-redux'
 
 
 const SignIn =(props) => {
-    console.log()
     const [usuarioRegistrado , setUsuarioRegistrado] = useState({})
     const [errores , setErrores] = useState([])
 

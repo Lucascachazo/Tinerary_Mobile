@@ -14,14 +14,7 @@ const Stack = createStackNavigator()
 function StackNavigator() {
     const [user, setUser] = useState()
 
-    // useEffect(() => {
-    //   persistencia()
-    // },[])
-    
-    // const persistencia = async () => {
-    //   var usuarioGuardado = await AsyncStorage.getItem('usuarioRegistrado')
-    //   setUser(JSON.parse(usuarioGuardado))
-    // }
+ 
     return (
           <Stack.Navigator>  
           <Stack.Screen name = "Landing" component = {Landing} options={{

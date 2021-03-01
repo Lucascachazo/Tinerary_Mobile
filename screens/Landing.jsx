@@ -5,16 +5,7 @@ import AsyncStorage  from '@react-native-async-storage/async-storage'
 function Landing(props) {
 
   const userName = (props.route)
-  // console.log(userName)
-
-    // useEffect(()=>{
-    //   persistencia()
-    // })
-    // const persistencia = async () =>{
-    //   var usuarioGuardado = await AsyncStorage.getItem('usuarioRegistrado')
-    //   console.log(JSON.parse(usuarioGuardado))
-
-    // }
+ 
     
     return (
         <>
@@ -62,3 +53,15 @@ const styles  = {
   }
   
 export default Landing
+
+
+ // console.log(userName)
+
+    // useEffect(()=>{
+    //   persistencia()
+    // })
+    // const persistencia = async () =>{
+    //   var usuarioGuardado = await AsyncStorage.getItem('usuarioRegistrado')
+    //   console.log(JSON.parse(usuarioGuardado))
+
+    // }
